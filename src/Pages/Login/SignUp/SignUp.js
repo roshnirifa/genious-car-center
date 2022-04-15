@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase_int';
 import SocialLogin from '../../SocialLogin/SocialLogin';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 
 const SignUp = () => {
     const emailRef = useRef('');
@@ -11,15 +11,18 @@ const SignUp = () => {
     const nameRef = useRef();
     const navigate = useNavigate();
 
-    const [createUserWithEmailAndPassword, user, error,] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating, error1] = useUpdateProfile(auth);
 
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const pass = passRef.current.value;
-        createUserWithEmailAndPassword(email, pass)
+        await createUserWithEmailAndPassword(email, pass)
+        await updateProfile({ displayName: name });
+        alert('Updated profile');
 
     }
     if (error) {
