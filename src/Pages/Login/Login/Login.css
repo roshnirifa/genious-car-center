@@ -1,0 +1,5 @@
+.box {
+    border: 2px solid gray;
+    box-shadow: 1px 1px 5px 5px lightblue;
+    width: 500px;
+}

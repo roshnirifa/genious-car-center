@@ -21,7 +21,7 @@ const experts = [
 const Experts = () => {
     return (
         <div className='container'>
-            <h2 className='text-primary text-center m-4'>Our Experts</h2>
+            <h1 className='text-primary text-center m-4'>Our Experts</h1>
             <div className="row">
                 {
                     experts.map(expert => <Expert

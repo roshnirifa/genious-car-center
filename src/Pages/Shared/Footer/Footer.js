@@ -3,8 +3,9 @@ import './Footer.css'
 const Footer = () => {
     return (
         <div className='footer'>
-            <footer >
-                <p className='text-center fw-bold'><small>copyright @{(new Date().getFullYear())} </small></p>
+            <footer className='text-center fw-bold' >
+                <p>Developed by Roshni Rifa</p>
+                <p ><small>copyright @{(new Date().getFullYear())} </small></p>
             </footer>
         </div>
     );
