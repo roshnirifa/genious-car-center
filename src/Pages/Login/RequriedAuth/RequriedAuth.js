@@ -4,9 +4,6 @@ import { Navigate, useLocation } from 'react-router-dom';
 import auth from '../../../firebase_int';
 
 
-
-
-
 const RequriedAuth = ({ children }) => {
     const [user] = useAuthState(auth);
     const location = useLocation()

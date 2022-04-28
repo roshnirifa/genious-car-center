@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase_int';
 import SocialLogin from '../../SocialLogin/SocialLogin';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
@@ -10,9 +10,12 @@ const SignUp = () => {
     const passRef = useRef('');
     const nameRef = useRef();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [createUserWithEmailAndPassword, user, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, error1] = useUpdateProfile(auth);
+
+    let from = location.state?.from?.pathname || "/";
 
 
     const handleSubmit = async (e) => {
@@ -33,12 +36,14 @@ const SignUp = () => {
         );
     }
     if (user) {
-        navigate('/')
-        console.log(user);
+        navigate(from, { replace: true });
     }
+
     const navigateSignUp = () => {
         navigate('/login');
     }
+
+
 
     return (
         <div className='mx-auto box my-4'>
