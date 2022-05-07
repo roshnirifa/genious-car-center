@@ -31,11 +31,7 @@ function App() {
             <CheckOut></CheckOut>
           </RequriedAuth>
         }></Route>
-        <Route path='/addservice' element={
-          <RequriedAuth>
-            <AddService></AddService>
-          </RequriedAuth>
-        }></Route>
+        <Route path='/addservice' element={<AddService></AddService>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>

@@ -2,11 +2,19 @@ import React from 'react';
 import './SocialLogin.css';
 import { BsFacebook, BsGoogle, BsGithub } from "react-icons/bs";
 import auth from '../../firebase_int';
-import { useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SocialLogin = () => {
     const [signInWithGoogle] = useSignInWithGoogle(auth);
     const [signInWithFacebook] = useSignInWithFacebook(auth);
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    const [signInWithEmailAndPassword, user] = useSignInWithEmailAndPassword(auth);
+    if (user) {
+        navigate(from, { replace: true });
+    }
     return (
         <div className='mx-auto w-50'>
             <div className='d-flex align-items-center '>
@@ -21,6 +29,8 @@ const SocialLogin = () => {
             </di>
 
         </div>
+
+
     );
 };
 

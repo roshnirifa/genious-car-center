@@ -13,7 +13,7 @@ const SignUp = () => {
     const location = useLocation();
 
     const [createUserWithEmailAndPassword, user, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [updateProfile, updating, error1] = useUpdateProfile(auth);
+    const [updateProfile] = useUpdateProfile(auth);
 
     let from = location.state?.from?.pathname || "/";
 
